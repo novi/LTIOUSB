@@ -17,6 +17,9 @@
 		524930DD14B8340200A1D2E9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 524930BD14B8340100A1D2E9 /* Cocoa.framework */; };
 		524930E514B8340200A1D2E9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 524930E314B8340200A1D2E9 /* InfoPlist.strings */; };
 		524930E814B8340200A1D2E9 /* LTIOUSBTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 524930E714B8340200A1D2E9 /* LTIOUSBTests.m */; };
+		5249310414B83E3D00A1D2E9 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5249310314B83E3D00A1D2E9 /* IOKit.framework */; };
+		5249310A14B8816B00A1D2E9 /* LTIOUSBDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 5249310714B8816B00A1D2E9 /* LTIOUSBDevice.m */; };
+		5249310B14B8816B00A1D2E9 /* LTIOUSBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5249310914B8816B00A1D2E9 /* LTIOUSBManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,20 +38,25 @@
 		524930C014B8340100A1D2E9 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		524930C114B8340100A1D2E9 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		524930C214B8340100A1D2E9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		524930C514B8340100A1D2E9 /* LTIOUSB-Info.plist */ = {isa = PBXFileReference; path = "LTIOUSB-Info.plist"; sourceTree = "<group>"; };
+		524930C514B8340100A1D2E9 /* LTIOUSB-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LTIOUSB-Info.plist"; sourceTree = "<group>"; };
 		524930C714B8340100A1D2E9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		524930C914B8340100A1D2E9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		524930CB14B8340100A1D2E9 /* LTIOUSB-Prefix.pch */ = {isa = PBXFileReference; path = "LTIOUSB-Prefix.pch"; sourceTree = "<group>"; };
+		524930CB14B8340100A1D2E9 /* LTIOUSB-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LTIOUSB-Prefix.pch"; sourceTree = "<group>"; };
 		524930CD14B8340100A1D2E9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		524930CF14B8340100A1D2E9 /* LTIOAppDelegate.h */ = {isa = PBXFileReference; path = LTIOAppDelegate.h; sourceTree = "<group>"; };
+		524930CF14B8340100A1D2E9 /* LTIOAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTIOAppDelegate.h; sourceTree = "<group>"; };
 		524930D014B8340100A1D2E9 /* LTIOAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTIOAppDelegate.m; sourceTree = "<group>"; };
 		524930D314B8340200A1D2E9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		524930DA14B8340200A1D2E9 /* LTIOUSBTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LTIOUSBTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		524930DB14B8340200A1D2E9 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		524930E214B8340200A1D2E9 /* LTIOUSBTests-Info.plist */ = {isa = PBXFileReference; path = "LTIOUSBTests-Info.plist"; sourceTree = "<group>"; };
+		524930E214B8340200A1D2E9 /* LTIOUSBTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LTIOUSBTests-Info.plist"; sourceTree = "<group>"; };
 		524930E414B8340200A1D2E9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		524930E614B8340200A1D2E9 /* LTIOUSBTests.h */ = {isa = PBXFileReference; path = LTIOUSBTests.h; sourceTree = "<group>"; };
+		524930E614B8340200A1D2E9 /* LTIOUSBTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTIOUSBTests.h; sourceTree = "<group>"; };
 		524930E714B8340200A1D2E9 /* LTIOUSBTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTIOUSBTests.m; sourceTree = "<group>"; };
+		5249310314B83E3D00A1D2E9 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		5249310614B8816B00A1D2E9 /* LTIOUSBDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTIOUSBDevice.h; sourceTree = "<group>"; };
+		5249310714B8816B00A1D2E9 /* LTIOUSBDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTIOUSBDevice.m; sourceTree = "<group>"; };
+		5249310814B8816B00A1D2E9 /* LTIOUSBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTIOUSBManager.h; sourceTree = "<group>"; };
+		5249310914B8816B00A1D2E9 /* LTIOUSBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTIOUSBManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5249310414B83E3D00A1D2E9 /* IOKit.framework in Frameworks */,
 				524930BE14B8340100A1D2E9 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -75,6 +84,7 @@
 		524930AE14B8340100A1D2E9 = {
 			isa = PBXGroup;
 			children = (
+				5249310514B8816B00A1D2E9 /* Library */,
 				524930C314B8340100A1D2E9 /* LTIOUSB */,
 				524930E014B8340200A1D2E9 /* LTIOUSBTests */,
 				524930BC14B8340100A1D2E9 /* Frameworks */,
@@ -94,6 +104,7 @@
 		524930BC14B8340100A1D2E9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5249310314B83E3D00A1D2E9 /* IOKit.framework */,
 				524930BD14B8340100A1D2E9 /* Cocoa.framework */,
 				524930DB14B8340200A1D2E9 /* SenTestingKit.framework */,
 				524930BF14B8340100A1D2E9 /* Other Frameworks */,
@@ -151,6 +162,17 @@
 				524930E314B8340200A1D2E9 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5249310514B8816B00A1D2E9 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				5249310614B8816B00A1D2E9 /* LTIOUSBDevice.h */,
+				5249310714B8816B00A1D2E9 /* LTIOUSBDevice.m */,
+				5249310814B8816B00A1D2E9 /* LTIOUSBManager.h */,
+				5249310914B8816B00A1D2E9 /* LTIOUSBManager.m */,
+			);
+			path = Library;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,6 +284,8 @@
 			files = (
 				524930CA14B8340100A1D2E9 /* main.m in Sources */,
 				524930D114B8340100A1D2E9 /* LTIOAppDelegate.m in Sources */,
+				5249310A14B8816B00A1D2E9 /* LTIOUSBDevice.m in Sources */,
+				5249310B14B8816B00A1D2E9 /* LTIOUSBManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
