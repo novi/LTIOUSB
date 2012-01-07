@@ -1,0 +1,450 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		524930BE14B8340100A1D2E9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 524930BD14B8340100A1D2E9 /* Cocoa.framework */; };
+		524930C814B8340100A1D2E9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 524930C614B8340100A1D2E9 /* InfoPlist.strings */; };
+		524930CA14B8340100A1D2E9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 524930C914B8340100A1D2E9 /* main.m */; };
+		524930CE14B8340100A1D2E9 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 524930CC14B8340100A1D2E9 /* Credits.rtf */; };
+		524930D114B8340100A1D2E9 /* LTIOAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 524930D014B8340100A1D2E9 /* LTIOAppDelegate.m */; };
+		524930D414B8340200A1D2E9 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 524930D214B8340200A1D2E9 /* MainMenu.xib */; };
+		524930DC14B8340200A1D2E9 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 524930DB14B8340200A1D2E9 /* SenTestingKit.framework */; };
+		524930DD14B8340200A1D2E9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 524930BD14B8340100A1D2E9 /* Cocoa.framework */; };
+		524930E514B8340200A1D2E9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 524930E314B8340200A1D2E9 /* InfoPlist.strings */; };
+		524930E814B8340200A1D2E9 /* LTIOUSBTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 524930E714B8340200A1D2E9 /* LTIOUSBTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		524930DE14B8340200A1D2E9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 524930B014B8340100A1D2E9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 524930B814B8340100A1D2E9;
+			remoteInfo = LTIOUSB;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		524930B914B8340100A1D2E9 /* LTIOUSB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LTIOUSB.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		524930BD14B8340100A1D2E9 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		524930C014B8340100A1D2E9 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		524930C114B8340100A1D2E9 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		524930C214B8340100A1D2E9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		524930C514B8340100A1D2E9 /* LTIOUSB-Info.plist */ = {isa = PBXFileReference; path = "LTIOUSB-Info.plist"; sourceTree = "<group>"; };
+		524930C714B8340100A1D2E9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		524930C914B8340100A1D2E9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		524930CB14B8340100A1D2E9 /* LTIOUSB-Prefix.pch */ = {isa = PBXFileReference; path = "LTIOUSB-Prefix.pch"; sourceTree = "<group>"; };
+		524930CD14B8340100A1D2E9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		524930CF14B8340100A1D2E9 /* LTIOAppDelegate.h */ = {isa = PBXFileReference; path = LTIOAppDelegate.h; sourceTree = "<group>"; };
+		524930D014B8340100A1D2E9 /* LTIOAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTIOAppDelegate.m; sourceTree = "<group>"; };
+		524930D314B8340200A1D2E9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		524930DA14B8340200A1D2E9 /* LTIOUSBTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LTIOUSBTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		524930DB14B8340200A1D2E9 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		524930E214B8340200A1D2E9 /* LTIOUSBTests-Info.plist */ = {isa = PBXFileReference; path = "LTIOUSBTests-Info.plist"; sourceTree = "<group>"; };
+		524930E414B8340200A1D2E9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		524930E614B8340200A1D2E9 /* LTIOUSBTests.h */ = {isa = PBXFileReference; path = LTIOUSBTests.h; sourceTree = "<group>"; };
+		524930E714B8340200A1D2E9 /* LTIOUSBTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTIOUSBTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		524930B614B8340100A1D2E9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				524930BE14B8340100A1D2E9 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		524930D614B8340200A1D2E9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				524930DC14B8340200A1D2E9 /* SenTestingKit.framework in Frameworks */,
+				524930DD14B8340200A1D2E9 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		524930AE14B8340100A1D2E9 = {
+			isa = PBXGroup;
+			children = (
+				524930C314B8340100A1D2E9 /* LTIOUSB */,
+				524930E014B8340200A1D2E9 /* LTIOUSBTests */,
+				524930BC14B8340100A1D2E9 /* Frameworks */,
+				524930BA14B8340100A1D2E9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		524930BA14B8340100A1D2E9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				524930B914B8340100A1D2E9 /* LTIOUSB.app */,
+				524930DA14B8340200A1D2E9 /* LTIOUSBTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		524930BC14B8340100A1D2E9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				524930BD14B8340100A1D2E9 /* Cocoa.framework */,
+				524930DB14B8340200A1D2E9 /* SenTestingKit.framework */,
+				524930BF14B8340100A1D2E9 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		524930BF14B8340100A1D2E9 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				524930C014B8340100A1D2E9 /* AppKit.framework */,
+				524930C114B8340100A1D2E9 /* CoreData.framework */,
+				524930C214B8340100A1D2E9 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		524930C314B8340100A1D2E9 /* LTIOUSB */ = {
+			isa = PBXGroup;
+			children = (
+				524930CF14B8340100A1D2E9 /* LTIOAppDelegate.h */,
+				524930D014B8340100A1D2E9 /* LTIOAppDelegate.m */,
+				524930D214B8340200A1D2E9 /* MainMenu.xib */,
+				524930C414B8340100A1D2E9 /* Supporting Files */,
+			);
+			path = LTIOUSB;
+			sourceTree = "<group>";
+		};
+		524930C414B8340100A1D2E9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				524930C514B8340100A1D2E9 /* LTIOUSB-Info.plist */,
+				524930C614B8340100A1D2E9 /* InfoPlist.strings */,
+				524930C914B8340100A1D2E9 /* main.m */,
+				524930CB14B8340100A1D2E9 /* LTIOUSB-Prefix.pch */,
+				524930CC14B8340100A1D2E9 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		524930E014B8340200A1D2E9 /* LTIOUSBTests */ = {
+			isa = PBXGroup;
+			children = (
+				524930E614B8340200A1D2E9 /* LTIOUSBTests.h */,
+				524930E714B8340200A1D2E9 /* LTIOUSBTests.m */,
+				524930E114B8340200A1D2E9 /* Supporting Files */,
+			);
+			path = LTIOUSBTests;
+			sourceTree = "<group>";
+		};
+		524930E114B8340200A1D2E9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				524930E214B8340200A1D2E9 /* LTIOUSBTests-Info.plist */,
+				524930E314B8340200A1D2E9 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		524930B814B8340100A1D2E9 /* LTIOUSB */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 524930EB14B8340200A1D2E9 /* Build configuration list for PBXNativeTarget "LTIOUSB" */;
+			buildPhases = (
+				524930B514B8340100A1D2E9 /* Sources */,
+				524930B614B8340100A1D2E9 /* Frameworks */,
+				524930B714B8340100A1D2E9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LTIOUSB;
+			productName = LTIOUSB;
+			productReference = 524930B914B8340100A1D2E9 /* LTIOUSB.app */;
+			productType = "com.apple.product-type.application";
+		};
+		524930D914B8340200A1D2E9 /* LTIOUSBTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 524930EE14B8340200A1D2E9 /* Build configuration list for PBXNativeTarget "LTIOUSBTests" */;
+			buildPhases = (
+				524930D514B8340200A1D2E9 /* Sources */,
+				524930D614B8340200A1D2E9 /* Frameworks */,
+				524930D714B8340200A1D2E9 /* Resources */,
+				524930D814B8340200A1D2E9 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				524930DF14B8340200A1D2E9 /* PBXTargetDependency */,
+			);
+			name = LTIOUSBTests;
+			productName = LTIOUSBTests;
+			productReference = 524930DA14B8340200A1D2E9 /* LTIOUSBTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		524930B014B8340100A1D2E9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = 524930B314B8340100A1D2E9 /* Build configuration list for PBXProject "LTIOUSB" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 524930AE14B8340100A1D2E9;
+			productRefGroup = 524930BA14B8340100A1D2E9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				524930B814B8340100A1D2E9 /* LTIOUSB */,
+				524930D914B8340200A1D2E9 /* LTIOUSBTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		524930B714B8340100A1D2E9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				524930C814B8340100A1D2E9 /* InfoPlist.strings in Resources */,
+				524930CE14B8340100A1D2E9 /* Credits.rtf in Resources */,
+				524930D414B8340200A1D2E9 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		524930D714B8340200A1D2E9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				524930E514B8340200A1D2E9 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		524930D814B8340200A1D2E9 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		524930B514B8340100A1D2E9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				524930CA14B8340100A1D2E9 /* main.m in Sources */,
+				524930D114B8340100A1D2E9 /* LTIOAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		524930D514B8340200A1D2E9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				524930E814B8340200A1D2E9 /* LTIOUSBTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		524930DF14B8340200A1D2E9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 524930B814B8340100A1D2E9 /* LTIOUSB */;
+			targetProxy = 524930DE14B8340200A1D2E9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		524930C614B8340100A1D2E9 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				524930C714B8340100A1D2E9 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		524930CC14B8340100A1D2E9 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				524930CD14B8340100A1D2E9 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		524930D214B8340200A1D2E9 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				524930D314B8340200A1D2E9 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		524930E314B8340200A1D2E9 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				524930E414B8340200A1D2E9 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		524930E914B8340200A1D2E9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		524930EA14B8340200A1D2E9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		524930EC14B8340200A1D2E9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LTIOUSB/LTIOUSB-Prefix.pch";
+				INFOPLIST_FILE = "LTIOUSB/LTIOUSB-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		524930ED14B8340200A1D2E9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LTIOUSB/LTIOUSB-Prefix.pch";
+				INFOPLIST_FILE = "LTIOUSB/LTIOUSB-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		524930EF14B8340200A1D2E9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/LTIOUSB.app/Contents/MacOS/LTIOUSB";
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LTIOUSB/LTIOUSB-Prefix.pch";
+				INFOPLIST_FILE = "LTIOUSBTests/LTIOUSBTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		524930F014B8340200A1D2E9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/LTIOUSB.app/Contents/MacOS/LTIOUSB";
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LTIOUSB/LTIOUSB-Prefix.pch";
+				INFOPLIST_FILE = "LTIOUSBTests/LTIOUSBTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		524930B314B8340100A1D2E9 /* Build configuration list for PBXProject "LTIOUSB" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				524930E914B8340200A1D2E9 /* Debug */,
+				524930EA14B8340200A1D2E9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		524930EB14B8340200A1D2E9 /* Build configuration list for PBXNativeTarget "LTIOUSB" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				524930EC14B8340200A1D2E9 /* Debug */,
+				524930ED14B8340200A1D2E9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		524930EE14B8340200A1D2E9 /* Build configuration list for PBXNativeTarget "LTIOUSBTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				524930EF14B8340200A1D2E9 /* Debug */,
+				524930F014B8340200A1D2E9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 524930B014B8340100A1D2E9 /* Project object */;
+}
