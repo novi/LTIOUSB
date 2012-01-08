@@ -42,4 +42,31 @@
     
 }
 
+- (IBAction)closeAll:(id)sender {
+    for (LTIOUSBDevice* device in [[LTIOUSBManager sharedInstance] devices]) {
+        [device closeDeviceInterface];
+        [device closePluginInterface];
+    }
+}
+
+- (IBAction)openAll:(id)sender {
+    for (LTIOUSBDevice* device in [[LTIOUSBManager sharedInstance] devices]) {
+        if ([device createPluginInterface]) {
+            NSLog(@"createPluginInterface: %p", device.pluginInterface);
+        }
+        if ([device createDeviceInterface]) {
+            // success
+            NSLog(@"createDeviceInterface: %p", device.deviceInterface);
+        }
+        [device openDevice];
+    }
+}
+
+- (IBAction)resetAll:(id)sender
+{
+    for (LTIOUSBDevice* device in [LTIOUSBManager sharedInstance].devices) {
+        [device openDevice];
+        [device resetDevice];
+    }
+}
 @end

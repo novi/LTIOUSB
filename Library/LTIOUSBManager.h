@@ -19,7 +19,7 @@ NSString* const LTIOUSBDeviceDisconnectedNotification;
 @interface LTIOUSBManager : NSObject
 
 // Primitive
-+ (id)sharedInstance;
++ (LTIOUSBManager*)sharedInstance;
 - (BOOL)startWithMatchingDictionaries:(NSArray*)array;
 @property (nonatomic, strong, readonly) NSArray* devices;
 

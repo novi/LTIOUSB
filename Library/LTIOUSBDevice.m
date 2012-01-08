@@ -20,12 +20,16 @@
     NSString* _identifier;
     BOOL _connected;
     io_service_t _handle;
+    IOCFPlugInInterface** _pluginInterface;
+    IOUSBDeviceInterface320** _deviceInterface;
 }
 @end
 
 @implementation LTIOUSBDevice
 
 @synthesize connected = _connected;
+@synthesize pluginInterface = _pluginInterface;
+@synthesize deviceInterface = _deviceInterface;
 
 -(NSDictionary *)deviceInfo
 {
@@ -41,10 +45,13 @@
 
 -(void)deviceConnected
 {
+    /*if ([self createPluginInterface]) {
+        NSLog(@"createPluginInterface: %p", _pluginInterface);
+    }
     if ([self createDeviceInterface]) {
         // success
-        NSLog(@"device interface created");
-    }
+        NSLog(@"createDeviceInterface: %p", _deviceInterface);
+    }*/
 }
 
 -(void)deviceDisconnected
@@ -73,11 +80,12 @@
     return YES;
 }
 
-
-#pragma mark - Helpers
-
--(BOOL)createDeviceInterface
+-(BOOL)createPluginInterface
 {
+    if (_pluginInterface) {
+        return NO;
+    }
+    
     kern_return_t kr;
     IOCFPlugInInterface** pluginInterface = NULL;
     SInt32 score = 0;
@@ -87,8 +95,32 @@
         return NO;
     }
     
+    _pluginInterface = pluginInterface;
+    
+    return YES;
+}
+
+
+
+-(void)closePluginInterface
+{
+    if (_pluginInterface) {
+        (*_pluginInterface)->Release(_pluginInterface);
+        _pluginInterface = NULL;
+    }
+    //IOObjectRelease(_handle); // release for device added
+    //_handle = IO_OBJECT_NULL;
+}
+
+
+-(BOOL)createDeviceInterface
+{
+    if (_deviceInterface) {
+        return NO;
+    }
+    
     IOUSBDeviceInterface320** interface = NULL;
-    HRESULT res = (*pluginInterface)->QueryInterface(pluginInterface, CFUUIDGetUUIDBytes(kIOUSBDeviceInterfaceID320), (LPVOID*)&interface);
+    HRESULT res = (*_pluginInterface)->QueryInterface(_pluginInterface, CFUUIDGetUUIDBytes(kIOUSBDeviceInterfaceID320), (LPVOID*)&interface);
     if (res != 0 && interface == NULL) {
         return NO;
     }
@@ -119,16 +151,73 @@
     ret = (*interface)->GetDeviceSubClass(interface, &subclass);
     NSLog(@"GetDeviceSubClass: %d", subclass);
     
-    ret = (*interface)->ResetDevice(interface);
-    NSLog(@"reset: %d", ret);
+    //ret = (*interface)->ResetDevice(interface);
+    //NSLog(@"reset: %d", ret);
     
     ret = (*interface)->USBDeviceClose(interface);
     if (ret != kIOReturnSuccess) {
         NSLog(@"close failed, %d, %x", ret, ret);
     }
     
-    ret = (*interface)->Release(interface);
-    NSLog(@"released %d", ret);
+    _deviceInterface = interface;
+    
+    return YES;
+}
+
+-(void)closeDeviceInterface
+{
+    if (_deviceInterface) {
+        (*_deviceInterface)->Release(_deviceInterface);
+        _deviceInterface = NULL;
+    }
+}
+
+#pragma mark - Helpers
+
+-(BOOL)openDevice
+{
+    if ( ! _deviceInterface) {
+        return NO;
+    }
+    
+    IOReturn ret = (*_deviceInterface)->USBDeviceOpen(_deviceInterface);
+    if (ret != kIOReturnSuccess) {
+        NSLog(@"open failed, %d, %x", ret, ret);
+        return NO;
+    }
+    
+    return YES;
+}
+
+-(BOOL)closeDevice
+{
+    if ( ! _deviceInterface) {
+        return NO;
+    }
+    
+    IOReturn ret = (*_deviceInterface)->USBDeviceClose(_deviceInterface);
+    if (ret != kIOReturnSuccess) {
+        return NO;
+    }
+    
+    return YES;
+}
+
+-(BOOL)resetDevice
+{
+    if ( ! _deviceInterface) {
+        return NO;
+    }
+    
+    if (! [self openDevice]) {
+        return NO;
+    }
+    
+    IOReturn ret = (*_deviceInterface)->ResetDevice(_deviceInterface);
+    if (ret != kIOReturnSuccess) {
+        NSLog(@"reset failed, %d, %x", ret, ret);
+        return NO;
+    }
     
     return YES;
 }
@@ -167,11 +256,18 @@
         return;
     }
     
+    [self closeDeviceInterface];
+    [self closePluginInterface];
+    
     _connected = NO;
+
+    IOObjectRelease(_handle); // release for device added
+    IOObjectRelease(_handle); // release for device removed
     _handle = IO_OBJECT_NULL;
     
     [self deviceDisconnected];
 }
+
 
 -(io_service_t)device
 {
