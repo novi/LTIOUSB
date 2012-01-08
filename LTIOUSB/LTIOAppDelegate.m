@@ -33,8 +33,10 @@
     
     NSMutableArray* dicts = [NSMutableArray array];
     
-    [dicts addObject:[LTIOUSBManager matchingDictionaryForAllUSBDevicesWithObjectBaseClass:[LTIOUSBDevice class]] ];
+    //[dicts addObject:[LTIOUSBManager matchingDictionaryForAllUSBDevicesWithObjectBaseClass:[LTIOUSBDevice class]] ];
     [dicts addObject:[LTIOUSBManager matchingDictionaryForProductID:0x1312 vendorID:0x10c4 objectBaseClass:[LTIOUSBDevice class]] ];
+    
+    [dicts addObject:[LTIOUSBManager matchingDictionaryForProductID:0x2707 vendorID:0x08bb objectBaseClass:[LTIOUSBDevice class]] ];
     
     [[LTIOUSBManager sharedInstance] startWithMatchingDictionaries:dicts];
     

@@ -71,7 +71,16 @@ void _LTIOUSBDeviceRemoved(void* context, io_iterator_t iterator)
         }
     }
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:LTIOUSBDeviceDisconnectedNotification object:removed];
+    // Remove device from list if allowed
+    for (LTIOUSBDevice* dev in removed) {
+        if ([[dev class] removeFromDeviceListOnDisconnect]) {
+            [manager removeDevice:dev];
+        }
+    }
+    
+    if (removed.count) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:LTIOUSBDeviceDisconnectedNotification object:removed];
+    }
 }
 
 @interface LTIOUSBManager()
@@ -107,6 +116,11 @@ void _LTIOUSBDeviceRemoved(void* context, io_iterator_t iterator)
 -(void)addDevice:(LTIOUSBDevice *)device
 {
     [_devices addObject:device];
+}
+
+-(void)removeDevice:(LTIOUSBDevice *)device
+{
+    [_devices removeObjectIdenticalTo:device];
 }
 
 - (BOOL)startWithMatchingDictionaries:(NSArray*)matching;

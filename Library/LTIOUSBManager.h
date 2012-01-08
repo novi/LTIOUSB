@@ -40,5 +40,6 @@ NSString* const LTIOUSBDeviceDisconnectedNotification;
 
 - (LTIOUSBDevice*)deviceWithIdentifier:(NSString*)identifier;
 - (void)addDevice:(LTIOUSBDevice*)device;
+- (void)removeDevice:(LTIOUSBDevice*)device;
 
 @end
