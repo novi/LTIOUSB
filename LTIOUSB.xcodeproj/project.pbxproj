@@ -20,6 +20,7 @@
 		5249310414B83E3D00A1D2E9 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5249310314B83E3D00A1D2E9 /* IOKit.framework */; };
 		5249310A14B8816B00A1D2E9 /* LTIOUSBDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 5249310714B8816B00A1D2E9 /* LTIOUSBDevice.m */; };
 		5249310B14B8816B00A1D2E9 /* LTIOUSBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5249310914B8816B00A1D2E9 /* LTIOUSBManager.m */; };
+		52D7073814BAB5630085C1FA /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 52D7073714BAB5630085C1FA /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		5249310714B8816B00A1D2E9 /* LTIOUSBDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTIOUSBDevice.m; sourceTree = "<group>"; };
 		5249310814B8816B00A1D2E9 /* LTIOUSBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTIOUSBManager.h; sourceTree = "<group>"; };
 		5249310914B8816B00A1D2E9 /* LTIOUSBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTIOUSBManager.m; sourceTree = "<group>"; };
+		52D7073714BAB5630085C1FA /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 		524930AE14B8340100A1D2E9 = {
 			isa = PBXGroup;
 			children = (
+				52D7073714BAB5630085C1FA /* README.md */,
 				5249310514B8816B00A1D2E9 /* Library */,
 				524930C314B8340100A1D2E9 /* LTIOUSB */,
 				524930E014B8340200A1D2E9 /* LTIOUSBTests */,
@@ -248,6 +251,7 @@
 				524930C814B8340100A1D2E9 /* InfoPlist.strings in Resources */,
 				524930CE14B8340100A1D2E9 /* Credits.rtf in Resources */,
 				524930D414B8340200A1D2E9 /* MainMenu.xib in Resources */,
+				52D7073814BAB5630085C1FA /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,6 +463,7 @@
 				524930ED14B8340200A1D2E9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		524930EE14B8340200A1D2E9 /* Build configuration list for PBXNativeTarget "LTIOUSBTests" */ = {
 			isa = XCConfigurationList;
@@ -467,6 +472,7 @@
 				524930F014B8340200A1D2E9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
