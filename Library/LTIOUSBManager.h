@@ -2,8 +2,9 @@
 //  LTIOUSBManager.h
 //  LTIOUSB
 //
-//  Created by 伊藤 祐輔 on 12/01/07.
-//  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
+//  Created by Yusuke Ito on 12/01/07.
+//  Copyright (c) 2012 Yusuke Ito.
+//  http://www.opensource.org/licenses/MIT
 //
 
 #import <Foundation/Foundation.h>
@@ -11,7 +12,7 @@
 
 NSString* const LTIOUSBDeviceConnectedNotification;
 NSString* const LTIOUSBDeviceDisconnectedNotification;
-// NSString* const LTIOUSBManagerObjectBaseClassKey;
+NSString* const LTIOUSBManagerObjectBaseClassKey; // the value must be NSString
 
 
 
@@ -20,8 +21,10 @@ NSString* const LTIOUSBDeviceDisconnectedNotification;
 
 // Primitive
 + (LTIOUSBManager*)sharedInstance;
-- (BOOL)startWithMatchingDictionaries:(NSArray*)array;
-@property (nonatomic, strong, readonly) NSArray* devices;
+- (BOOL)startWithMatchingDictionaries:(NSArray*)array; // return: not 0 is success
+@property (nonatomic, strong, readonly) NSArray* devices; // LTIOUSBDevice or its subclass
+
+
 
 // Helper
 - (BOOL)startWithMatchingDictionary:(NSDictionary*)dict;

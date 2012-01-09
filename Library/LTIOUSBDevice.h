@@ -2,9 +2,11 @@
 //  LTIOUSBDevice.h
 //  LTIOUSB
 //
-//  Created by 伊藤 祐輔 on 12/01/07.
-//  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
+//  Created by Yusuke Ito on 12/01/07.
+//  Copyright (c) 2012 Yusuke Ito.
+//  http://www.opensource.org/licenses/MIT
 //
+
 
 #import <Foundation/Foundation.h>
 #import <IOKit/IOCFPlugIn.h>
@@ -22,10 +24,10 @@
 - (void)deviceConnected;
 - (void)deviceDisconnected;
 + (NSString*)deviceIdentifier:(io_service_t)device; // Same identifier is same instance, default implementation is "<serial>-<productID>-<vendorID>"
-+ (BOOL)removeFromDeviceListOnDisconnect;
++ (BOOL)removeFromDeviceListOnDisconnect; // Default is NO
 
 // Handle Interface
-- (BOOL)createPluginInterface;
+- (BOOL)createPluginInterface; // return: not 0 is success
 - (void)closePluginInterface;
 @property (nonatomic, assign, readonly) IOCFPlugInInterface** pluginInterface;
 
