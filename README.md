@@ -37,7 +37,7 @@ CocoaでUSBドライバを作成するためのIOKitラッパー(ヘルパー)�
 * -openInterface, -closeInterface、インターフェース関連のヘルパー
     * self.interfaceInterface で得られるハンドルを使って処理を行います。別のinterface-interfaceを使う場合はサブクラスで上書きすると良いでしょう。
 * Async系ヘルパー
-    * コールバックはBlocksが使えます。このブロックは -addAsyncRunloopSourceToRunloop で登録したときのRunloopのスレッドで呼ばれます。
+    * コールバックはBlocksが使えます。このBlocksは -addAsyncRunloopSourceToRunloop で登録したときのRunloopのスレッドで呼ばれます。
 
 
 ### サブクラス化
@@ -56,7 +56,7 @@ CocoaでUSBドライバを作成するためのIOKitラッパー(ヘルパー)�
 ## 実装例
 
 * ワンセグチューナードライバ for LOG-J200
-    * CapUSBDevice クラスをLTIOUSBDeviceクラスから継承
+    * CapUSBDeviceクラス (LTIOUSBDeviceクラスから継承)
     * [https://github.com/novi/CapOneSegMac](https://github.com/novi/CapOneSegMac)
 
 
