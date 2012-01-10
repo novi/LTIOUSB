@@ -41,8 +41,9 @@
 
 - (IBAction)closeAll:(id)sender {
     for (LTIOUSBDevice* device in [[LTIOUSBManager sharedInstance] devices]) {
-        [device closeDeviceInterface];
-        [device closePluginInterface];
+        [device destroyInterfaceInterface];
+        [device destroyDeviceInterface];
+        [device destroyPluginInterface];
     }
 }
 
@@ -56,6 +57,10 @@
             NSLog(@"createDeviceInterface: %p", device.deviceInterface);
         }
         [device openDevice];
+        if ([device findFirstInterfaceInterface]) {
+            // success
+            NSLog(@"findFirstInterfaceInterface: %p", device.interfaceInterface);
+        }
     }
 }
 

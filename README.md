@@ -24,12 +24,20 @@ CocoaでUSBドライバを作成するためのIOKitラッパー(ヘルパー)�
 
 * deviceInfo
     * デバイスの情報を取得。キーは USBSpec.h を参照してください。
-* -createPluginInterface, -closePluginInterface
+* -createPluginInterface, -destroyPluginInterface
     * プラグインインターフェースを作成・破棄します。呼びすぎても問題ありません。
-* -createDeviceInterface, -closeDeviceInterface
+* -createDeviceInterface, -destroyDeviceInterface
     * デバイスインターフェースを作成・破棄します。呼びすぎても問題ありません。
 * -openDevice, -closeDevice, -resetDevice
     * デバイスインターフェースが作成されている必要があります。
+* -findFirstInterfaceInterface
+    * 最初に見つかったinterface-interface(デバイスのインターフェース)を探します。デバイスのインターフェースが1つしか無い時に便利です。
+* -addAsyncRunloopSourceToRunloop
+    * 非同期の処理を実行する時のRunloopを指定します。
+* -openInterface, -closeInterface、インターフェース関連のヘルパー
+    * self.interfaceInterface で得られるハンドルを使って処理を行います。別のinterface-interfaceを使う場合はサブクラスで上書きすると良いでしょう。
+* Async系ヘルパー
+    * コールバックはBlocksが使えます。このブロックは -addAsyncRunloopSourceToRunloop で登録したときのRunloopのスレッドで呼ばれます。
 
 
 ### サブクラス化
@@ -44,6 +52,12 @@ CocoaでUSBドライバを作成するためのIOKitラッパー(ヘルパー)�
 ## その他
 * ARCを使用しています。
 * iOS環境でもコンパイルは可能ですが、iOS4以降はサンドボックスにより動作しません。Jailbreakが必要(未確認)。
+
+## 実装例
+
+* ワンセグチューナードライバ for LOG-J200
+    * CapUSBDevice クラスをLTIOUSBDeviceクラスから継承
+    * [https://github.com/novi/CapOneSegMac](https://github.com/novi/CapOneSegMac)
 
 
 ## ライセンス
