@@ -12,6 +12,11 @@
 #import <IOKit/IOCFPlugIn.h>
 #import <IOKit/usb/IOUSBLib.h>
 
+
+typedef void (^LTIOUSBDeviceReadCallback)(NSData* data);
+typedef void (^LTIOUSBDeviceWriteCallback)(BOOL success);
+
+
 // Abstract class
 @interface LTIOUSBDevice : NSObject
 
@@ -35,11 +40,31 @@
 - (void)closeDeviceInterface;
 @property (nonatomic, assign, readonly) IOUSBDeviceInterface320** deviceInterface;
 
+- (BOOL)findFirstInterfaceInterface; // device must be opend
+- (void)closeInterfaceInterface;
+
+// You can override on subclass if use another interface-interface to use Helper Methods
+@property (nonatomic, assign, readonly) IOUSBInterfaceInterface300** interfaceInterface;
 
 // Helpers
 - (BOOL)openDevice;
 - (BOOL)closeDevice;
 - (BOOL)resetDevice;
+
+// these helper methods use |self.interfaceInterface| for interface-interface
+- (BOOL)openInterface; 
+- (BOOL)closeInterface; 
+- (BOOL)addAsyncRunloopSourceToRunloop:(CFRunLoopRef)toRunloop;
+
+- (BOOL)clearPipeStall:(UInt8)pipe;
+
+- (BOOL)writeToPipe:(UInt8)pipe data:(NSData*)data noDataTimeout:(UInt32)dto completionTimeout:(UInt32)cto;
+- (BOOL)readFromPipe:(UInt8)pipe data:(NSData**)readData noDataTimeout:(UInt32)dto completionTimeout:(UInt32)cto; // not yet tested
+
+- (BOOL)readFromPipeAsync:(UInt8)pipe callback:(LTIOUSBDeviceReadCallback)callback maxPacketSize:(UInt32)maxSize noDataTimeout:(UInt32)dto completionTimeout:(UInt32)cto;
+- (BOOL)writeToPipeAsync:(UInt8)pipe data:(NSData*)data callback:(LTIOUSBDeviceWriteCallback)callback noDataTimeout:(UInt32)dto completionTimeout:(UInt32)cto; // not yet tested
+
+- (BOOL)sendControlRequestToPipe:(UInt8)pipe request:(IOUSBDevRequestTO)request;
 
 @end
 

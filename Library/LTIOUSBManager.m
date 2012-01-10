@@ -161,6 +161,7 @@ void _LTIOUSBDeviceRemoved(void* context, io_iterator_t iterator)
         kern_return_t kr = IOServiceAddMatchingNotification(notifyPort, kIOFirstMatchNotification, (__bridge_retained CFDictionaryRef)matchingDict, _LTIOUSBDeviceAdded,
                                          (void*)objectBaseClassName, &iterator);
         if (kr != kIOReturnSuccess) {
+            CFRelease(objectBaseClassName);
             return NO;
         }
         
@@ -173,6 +174,7 @@ void _LTIOUSBDeviceRemoved(void* context, io_iterator_t iterator)
         kr = IOServiceAddMatchingNotification(notifyPort, kIOTerminatedNotification, (__bridge_retained CFDictionaryRef)matchingDict, _LTIOUSBDeviceRemoved,
                                          (void*)objectBaseClassName, &iterator);
         if (kr != kIOReturnSuccess) {
+            CFRelease(objectBaseClassName);
             return NO;
         }
         if (iterator) {

@@ -15,6 +15,25 @@
 #import <IOKit/usb/IOUSBLib.h>
 #import <IOKit/IOBSD.h>
 
+void _LTUSBInterfaceReadWriteAsyncCallback(void *refcon, IOReturn result, void *arg0);
+
+
+
+void _LTUSBInterfaceReadWriteAsyncCallback(void *refcon, IOReturn result, void *arg0)
+{
+    void (^callback)(UInt32 size, IOReturn res) = (__bridge id)refcon;
+    
+    UInt32 size = (UInt32)arg0;
+    if (result == kIOReturnSuccess && size) {
+        callback(size, result);
+    } else {
+        callback(0, result);
+    }
+    
+    CFRelease((CFTypeRef)refcon);
+}
+
+
 
 @interface LTIOUSBDevice()
 {
@@ -23,6 +42,7 @@
     io_service_t _handle;
     IOCFPlugInInterface** _pluginInterface;
     IOUSBDeviceInterface320** _deviceInterface;
+    IOUSBInterfaceInterface300** _interfaceInterface;
 }
 @end
 
@@ -31,6 +51,7 @@
 @synthesize connected = _connected;
 @synthesize pluginInterface = _pluginInterface;
 @synthesize deviceInterface = _deviceInterface;
+@synthesize interfaceInterface = _interfaceInterface;
 
 -(NSDictionary *)deviceInfo
 {
@@ -168,11 +189,82 @@
 
 -(void)closeDeviceInterface
 {
+    [self closeDevice];
     if (_deviceInterface) {
         (*_deviceInterface)->Release(_deviceInterface);
         _deviceInterface = NULL;
     }
 }
+
+
+
+
+-(BOOL)findFirstInterfaceInterface
+{
+    if (_interfaceInterface) {
+        return NO;
+    }
+    
+    IOUSBFindInterfaceRequest request;
+    request.bInterfaceClass    = kIOUSBFindInterfaceDontCare;
+    request.bInterfaceSubClass = kIOUSBFindInterfaceDontCare;
+    request.bInterfaceProtocol = kIOUSBFindInterfaceDontCare;
+    request.bAlternateSetting  = kIOUSBFindInterfaceDontCare;
+    
+    IOUSBDeviceInterface320** deviceInterface = self.deviceInterface;
+    
+    IOReturn ret;
+    io_iterator_t iterator = IO_OBJECT_NULL;
+    io_service_t interface = IO_OBJECT_NULL;
+    ret = (*deviceInterface)->CreateInterfaceIterator(deviceInterface, &request, &iterator);
+    IOCFPlugInInterface** pluginInterface = NULL;
+    SInt32 score = 0;
+    while ((interface = IOIteratorNext(iterator))) {
+        kern_return_t kr = IOCreatePlugInInterfaceForService(interface, kIOUSBInterfaceUserClientTypeID, kIOCFPlugInInterfaceID, &pluginInterface, &score);
+        IOObjectRelease(interface);
+        
+        if (kr != 0 || !pluginInterface) {
+            continue; // error
+        }
+        
+        
+        IOUSBInterfaceInterface300** interfaceInterface = NULL;
+        HRESULT res = (*pluginInterface)->QueryInterface(pluginInterface, CFUUIDGetUUIDBytes(kIOUSBInterfaceInterfaceID300), (LPVOID)&interfaceInterface);
+        IODestroyPlugInInterface(pluginInterface);
+        if (res != 0) {
+            continue; // error
+        }
+        
+        IOObjectRelease(iterator);
+        _interfaceInterface = interfaceInterface;
+        return YES;
+        //return interfaceInterface;
+    }
+    
+    IOObjectRelease(iterator);
+    return NO;
+}
+
+-(void)closeInterfaceInterface
+{
+    [self closeInterface];
+    if (_interfaceInterface) {
+        (*_interfaceInterface)->Release(_interfaceInterface);
+        _interfaceInterface = NULL;
+    }
+}
+
+
+/*
+-(void)replaceInterfaceInterfaceWith:(IOUSBInterfaceInterface300 **)interface
+{
+    if (interface && _interfaceInterface != interface) {
+        _interfaceInterface = interface;
+    }
+}
+*/
+
+
 
 #pragma mark - Helpers
 
@@ -224,9 +316,154 @@
     return YES;
 }
 
+-(BOOL)openInterface
+{
+    IOUSBInterfaceInterface300** interface = self.interfaceInterface;
+    if (!interface) {
+        return NO;
+    }
+    
+    IOReturn ret = (*interface)->USBInterfaceOpen(interface);
+    if (ret != kIOReturnSuccess) {
+        return NO;
+    }
+    
+    return YES;
+}
+
+-(BOOL)closeInterface
+{
+    IOUSBInterfaceInterface300** interface = self.interfaceInterface;
+    if (!interface) {
+        return NO;
+    }
+    
+    IOReturn ret = (*interface)->USBInterfaceClose(interface);
+    if (ret != kIOReturnSuccess) {
+        return NO;
+    }
+    
+    return YES;
+}
+
+
+-(BOOL)addAsyncRunloopSourceToRunloop:(CFRunLoopRef)toRunloop
+{
+    CFRunLoopSourceRef source = NULL;
+    IOReturn ret = (*_interfaceInterface)->CreateInterfaceAsyncEventSource(_interfaceInterface, &source);
+    if (ret != kIOReturnSuccess) {
+        return NO;
+    }
+    CFRunLoopAddSource(toRunloop, source, kCFRunLoopDefaultMode);
+    CFRelease(source);
+    
+    return YES;
+}
+
+
+-(BOOL)clearPipeStall:(UInt8)pipe
+{
+    IOReturn ret = (*_interfaceInterface)->ClearPipeStall(_interfaceInterface, pipe);
+    if (ret != kIOReturnSuccess) {
+        return NO;
+    }
+    
+    return YES;
+}
+
+-(BOOL)readFromPipe:(UInt8)pipe data:(NSData *__autoreleasing *)readData noDataTimeout:(UInt32)dto completionTimeout:(UInt32)cto
+{
+#warning @TODO: get pipe max size from endpoint descriptor
+    
+    UInt32 pipeMaxSize = 4096;
+    UInt8* buf = malloc(sizeof(UInt8)*pipeMaxSize);
+    UInt32 readDataSize = 0;
+    
+    IOReturn ret = (*_interfaceInterface)->ReadPipeTO(_interfaceInterface, pipe, buf, &readDataSize, dto, cto);
+    if (ret != kIOReturnSuccess) {
+        return NO;
+    }
+    
+    if (readData) {
+        *readData = [NSData dataWithBytesNoCopy:buf length:readDataSize freeWhenDone:YES];
+    }
+    
+    return YES;
+}
+
+-(BOOL)writeToPipe:(UInt8)pipe data:(NSData *)data noDataTimeout:(UInt32)dto completionTimeout:(UInt32)cto
+{
+    IOReturn ret = (*_interfaceInterface)->WritePipeTO(_interfaceInterface, pipe, (void*)data.bytes, (UInt32)data.length, dto, cto);
+    if (ret != kIOReturnSuccess) {
+        return NO;
+    }
+    return YES;
+}
+
+-(BOOL)readFromPipeAsync:(UInt8)pipe callback:(LTIOUSBDeviceReadCallback)callback maxPacketSize:(UInt32)maxSize noDataTimeout:(UInt32)dto completionTimeout:(UInt32)cto
+{
+    UInt8* buffer = malloc(sizeof(UInt8)*maxSize);
+    
+    id readCallBackObj = [^ void(NSUInteger size, IOReturn result) {
+        NSData* data = size ? [NSData dataWithBytes:buffer length:size] : nil;
+        free(buffer);
+        if (callback) {
+            if (result == kIOReturnSuccess) {
+                if (size) {
+                    callback(data);
+                } else {
+                    callback([NSData data]); // zero size data
+                }
+            } else {
+                callback(nil);
+            }
+        }
+    } copy];
+    
+    CFTypeRef readCallBack =  (__bridge_retained CFTypeRef)readCallBackObj;
+    
+    IOReturn ret = (*_interfaceInterface)->ReadPipeAsyncTO(_interfaceInterface, pipe, buffer, maxSize, dto, cto, _LTUSBInterfaceReadWriteAsyncCallback, (void*)readCallBack);
+    
+    if (ret != kIOReturnSuccess) {
+        CFRelease(readCallBack); // release callback if failure
+        return NO;
+    }
+    
+    return YES;
+}
+
+-(BOOL)writeToPipeAsync:(UInt8)pipe data:(NSData *)data callback:(LTIOUSBDeviceWriteCallback)callback noDataTimeout:(UInt32)dto completionTimeout:(UInt32)cto
+{
+    CFTypeRef writeCallBack =  (__bridge_retained CFTypeRef)[^ void(NSUInteger size, IOReturn result) {
+        BOOL success = (size == data.length) ? YES : NO;
+        if (callback) {
+            callback(success);
+        }
+    } copy];
+    
+    
+    IOReturn ret = (*_interfaceInterface)->WritePipeAsyncTO(_interfaceInterface, pipe, (void*)data.bytes, (UInt32)data.length, dto, cto, _LTUSBInterfaceReadWriteAsyncCallback, (void*)writeCallBack);
+    
+    if (ret != kIOReturnSuccess) {
+        CFRelease(writeCallBack); // release callback if failure
+        return NO;
+    }
+    
+    return YES;
+}
+
+-(BOOL)sendControlRequestToPipe:(UInt8)pipe request:(IOUSBDevRequestTO)request
+{
+    IOReturn ret = (*_interfaceInterface)->ControlRequestTO(_interfaceInterface, pipe, &request);
+    if (ret != kIOReturnSuccess) {
+        return NO;
+    }
+    return YES;
+}
 
 @end
 
+#pragma mark -
 
 @implementation LTIOUSBDevice(Private)
 
@@ -258,6 +495,7 @@
         return;
     }
     
+    [self closeInterfaceInterface];
     [self closeDeviceInterface];
     [self closePluginInterface];
     
