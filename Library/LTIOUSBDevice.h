@@ -33,15 +33,15 @@ typedef void (^LTIOUSBDeviceWriteCallback)(BOOL success);
 
 // Handle Interface
 - (BOOL)createPluginInterface; // return: not 0 is success
-- (void)closePluginInterface;
+- (void)destroyPluginInterface;
 @property (nonatomic, assign, readonly) IOCFPlugInInterface** pluginInterface;
 
 - (BOOL)createDeviceInterface;
-- (void)closeDeviceInterface;
+- (void)destroyDeviceInterface;
 @property (nonatomic, assign, readonly) IOUSBDeviceInterface320** deviceInterface;
 
 - (BOOL)findFirstInterfaceInterface; // device must be opend
-- (void)closeInterfaceInterface;
+- (void)destroyInterfaceInterface;
 
 // You can override on subclass if use another interface-interface to use Helper Methods
 @property (nonatomic, assign, readonly) IOUSBInterfaceInterface300** interfaceInterface;

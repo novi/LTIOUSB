@@ -124,7 +124,7 @@ void _LTUSBInterfaceReadWriteAsyncCallback(void *refcon, IOReturn result, void *
 
 
 
--(void)closePluginInterface
+-(void)destroyPluginInterface
 {
     if (_pluginInterface) {
         (*_pluginInterface)->Release(_pluginInterface);
@@ -187,7 +187,7 @@ void _LTUSBInterfaceReadWriteAsyncCallback(void *refcon, IOReturn result, void *
     return YES;
 }
 
--(void)closeDeviceInterface
+-(void)destroyDeviceInterface
 {
     [self closeDevice];
     if (_deviceInterface) {
@@ -245,7 +245,7 @@ void _LTUSBInterfaceReadWriteAsyncCallback(void *refcon, IOReturn result, void *
     return NO;
 }
 
--(void)closeInterfaceInterface
+-(void)destroyInterfaceInterface
 {
     [self closeInterface];
     if (_interfaceInterface) {
@@ -495,9 +495,9 @@ void _LTUSBInterfaceReadWriteAsyncCallback(void *refcon, IOReturn result, void *
         return;
     }
     
-    [self closeInterfaceInterface];
-    [self closeDeviceInterface];
-    [self closePluginInterface];
+    [self destroyInterfaceInterface];
+    [self destroyDeviceInterface];
+    [self destroyPluginInterface];
     
     _connected = NO;
 
