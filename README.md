@@ -10,11 +10,11 @@ CocoaでUSBドライバを作成するためのIOKitラッパー(ヘルパー)�
 ## LTIOUSBManager クラス
 
 * シングルトン
-* -startWithMatchingDictionaries
+* `-startWithMatchingDictionaries`
     * マッチング辞書で監視を開始します。すでに接続されているものがあれば、すぐに Notification が送信されます。マッチング辞書に関してはドキュメントや解説サイトを参照してください。
     
-    ここで、マッチング辞書に LTIOUSBManagerObjectBaseClassKey を加えて、LTIOUSBDevice のサブクラスを設定すると、自動的にデバイス接続時にそのクラスがインスタンス化されます。下記参照。
-* devices
+    ここで、マッチング辞書に `LTIOUSBManagerObjectBaseClassKey` を加えて、`LTIOUSBDevice` のサブクラスを設定すると、自動的にデバイス接続時にそのクラスがインスタンス化されます。下記参照。
+* `devices`
     * マッチしたデバイスのリスト(過去に接続されていたものも含まれる場合がある。下記参照)
 
 
@@ -22,32 +22,32 @@ CocoaでUSBドライバを作成するためのIOKitラッパー(ヘルパー)�
 ## LTIOUSBDevice クラス
 抽象クラスです。通常はサブクラス化して使います。デバイスごと1つのインスタンスが作成されます。
 
-* deviceInfo
+* `deviceInfo`
     * デバイスの情報を取得。キーは USBSpec.h を参照してください。
-* -createPluginInterface, -destroyPluginInterface
+* `-createPluginInterface`, `-destroyPluginInterface`
     * プラグインインターフェースを作成・破棄します。呼びすぎても問題ありません。
-* -createDeviceInterface, -destroyDeviceInterface
+* `-createDeviceInterface`, `-destroyDeviceInterface`
     * デバイスインターフェースを作成・破棄します。呼びすぎても問題ありません。
-* -openDevice, -closeDevice, -resetDevice
+* `-openDevice`, `-closeDevice`, `-resetDevice`
     * デバイスインターフェースが作成されている必要があります。
-* -findFirstInterfaceInterface
+* `-findFirstInterfaceInterface`
     * 最初に見つかったinterface-interface(デバイスのインターフェース)を探します。デバイスのインターフェースが1つしか無い時に便利です。
-* -addAsyncRunloopSourceToRunloop
+* `-addAsyncRunloopSourceToRunloop`
     * 非同期の処理を実行する時のRunloopを指定します。
-* -openInterface, -closeInterface、インターフェース関連のヘルパー
-    * self.interfaceInterface で得られるハンドルを使って処理を行います。別のinterface-interfaceを使う場合はサブクラスで上書きすると良いでしょう。
+* `-openInterface`, `-closeInterface`、インターフェース関連のヘルパー
+    * `self.interfaceInterface` で得られるハンドルを使って処理を行います。別のinterface-interfaceを使う場合はサブクラスで上書きすると良いでしょう。
 * Async系ヘルパー
-    * コールバックはBlocksが使えます。このBlocksは -addAsyncRunloopSourceToRunloop で登録したときのRunloopのスレッドで呼ばれます。
+    * コールバックはBlocksが使えます。このBlocksは `-addAsyncRunloopSourceToRunloop` で登録したときのRunloopのスレッドで呼ばれます。
 
 
 ### サブクラス化
-* -deviceConnected, -deviceDisconnected
+* `-deviceConnected`, `-deviceDisconnected`
     * デバイスが接続・切断されたときに呼ばれます。
-* +deviceIdentifier:
+* `+deviceIdentifier:`
     * そのデバイスのユニークなID文字列を返します。
     * 一度接続されたデバイスが再接続されたとき、この文字列が同じであれば、再度同じインスタンスが使われます。
-* +removeFromDeviceListOnDisconnect
-    * デバイスが切断されたときに LTIOUSBManager クラスのデバイスリストから取り除くか設定します。
+* `+removeFromDeviceListOnDisconnect`
+    * デバイスが切断されたときに `LTIOUSBManager` クラスのデバイスリストから取り除くか設定します。
 
 ## その他
 * ARCを使用しています。
@@ -56,7 +56,7 @@ CocoaでUSBドライバを作成するためのIOKitラッパー(ヘルパー)�
 ## 実装例
 
 * ワンセグチューナードライバ for LOG-J200
-    * CapUSBDeviceクラス (LTIOUSBDeviceクラスから継承)
+    * CapUSBDeviceクラス (`LTIOUSBDevice`クラスから継承)
     * [https://github.com/novi/CapOneSegMac](https://github.com/novi/CapOneSegMac)
 
 

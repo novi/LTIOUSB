@@ -20,7 +20,6 @@
 		5249310414B83E3D00A1D2E9 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5249310314B83E3D00A1D2E9 /* IOKit.framework */; };
 		5249310A14B8816B00A1D2E9 /* LTIOUSBDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 5249310714B8816B00A1D2E9 /* LTIOUSBDevice.m */; };
 		5249310B14B8816B00A1D2E9 /* LTIOUSBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5249310914B8816B00A1D2E9 /* LTIOUSBManager.m */; };
-		52D7073814BAB5630085C1FA /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 52D7073714BAB5630085C1FA /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -251,7 +250,6 @@
 				524930C814B8340100A1D2E9 /* InfoPlist.strings in Resources */,
 				524930CE14B8340100A1D2E9 /* Credits.rtf in Resources */,
 				524930D414B8340200A1D2E9 /* MainMenu.xib in Resources */,
-				52D7073814BAB5630085C1FA /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
